@@ -1,0 +1,7 @@
+<section class="sidebar">
+    {% if request.user.is_authenticated and request.user.templates.first %}
+        {{request.user.templates.first.sidebar_code |safe}}
+    {% else %}
+    <h2>Siebar Section</h2>
+{% endif %}
+</section>
