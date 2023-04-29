@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer text-center">
   {% if request.user.is_authenticated and request.user.templates.first %}
     {{request.user.templates.first.footer_code |safe}} 
   {% else %}
