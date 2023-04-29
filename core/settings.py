@@ -14,8 +14,7 @@ SECRET_KEY = 'django-insecure-3w%df9nrvrx3fe9=ms(4(&khv&@)fk6*68cz)6@k+m*x^$ivt8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['1898-2402-3a80-972-6f13-c954-3a38-d929-8232.ngrok-free.app','127.0.0.1']
 
 # Application definition
 
@@ -28,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base.apps.BaseConfig'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -44,7 +44,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,9 +105,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
+
+
 if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+CORS_ALLOW_ALL_ORIGINS = True
