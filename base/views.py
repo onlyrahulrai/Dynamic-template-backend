@@ -35,7 +35,9 @@ def select_theme(request):
 
         theme = get_object_or_404(Theme, pk=data.get("id"))
 
-        static_path = os.path.join(os.path.join(settings.BASE_DIR,'static'),request.user.username)
+        static_directory = os.path.join(settings.BASE_DIR,'static')
+
+        user_static_directory = os.path.join(static_directory,request.user.username)
 
         template_directory = os.path.join(get_templates_directory(),request.user.username)
 
@@ -44,11 +46,15 @@ def select_theme(request):
 
             code_folder = os.listdir(template_directory)
 
+            if request.user.username in os.listdir(static_directory):
+                print(" User Static Directory ",user_static_directory)
+                shutil.rmtree(user_static_directory)
+
             for item in code_folder:
                 if item in ["css","js"]:
                     path = os.path.join(template_directory,item)
 
-                    shutil.copytree(path,os.path.join(static_path,item))
+                    shutil.copytree(path,os.path.join(user_static_directory,item))
 
                     shutil.rmtree(path)
 
