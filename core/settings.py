@@ -121,3 +121,5 @@ else:
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = ['https://dynamic-template-django-production.up.railway.app']
+
