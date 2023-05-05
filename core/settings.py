@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-3w%df9nrvrx3fe9=ms(4(&khv&@)fk6*68cz)6@k+m*x^$ivt8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dynamic-template-django-production.up.railway.app','127.0.0.1',"localhost"]
+ALLOWED_HOSTS = ['testing-amojo.up.railway.app','127.0.0.1',"localhost"]
 
 # Application definition
 
@@ -121,5 +121,5 @@ else:
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = ['https://dynamic-template-django-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://testing-amojo.up.railway.app']
 
