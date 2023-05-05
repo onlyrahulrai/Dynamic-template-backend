@@ -118,3 +118,11 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://dynamic-template-django-production.up.railway.app'
+],
+
+CORS_ORIGIN_WHITELIST = [
+    'https://dynamic-template-django-production.up.railway.app',
+]
