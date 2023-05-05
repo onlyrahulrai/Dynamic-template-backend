@@ -42,6 +42,9 @@ def select_theme(request):
         template_directory = os.path.join(get_templates_directory(),request.user.username)
 
         with zipfile.ZipFile(theme.code.path, 'r') as zip_ref:
+            if request.user.username in os.listdir(get_templates_directory()):
+                shutil.rmtree(template_directory)
+
             zip_ref.extractall(template_directory)
 
             code_folder = os.listdir(template_directory)

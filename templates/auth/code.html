@@ -6,17 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+
     <link
     rel="stylesheet"
     href="{% static request.user.username|add:'/css/style.css' %}"
   />
+  
     <script>
-      var user = '{{request.user.username}}'
+      var user = "{{request.user.username}}"
     </script>
+
   </head>
   <body>
-    <h3 class="text-center">Fixed Layout - {{request.user.username}}</h3>
+    {% block header %} {% include 'header.html' %} {% endblock header %}
 
+    <div class="h-85 d-flex justify-content-center align-items-center">
+      <h3 class="text-center">Fluid layout - {{request.user.username|title}}</h3>
+    </div>
+
+    {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     <script src="{% static request.user.username|add:'/js/main.js' %}"></script>
   </body>
 </html>
