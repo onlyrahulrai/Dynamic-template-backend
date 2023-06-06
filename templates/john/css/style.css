@@ -1,5 +1,5 @@
 *{
-    background-color: turquoise;
+    background-color: burlywood;
 }
 
 .text-center {
@@ -10,14 +10,14 @@
     height: 85vh;
   }
 
-  .d-flex{
+  .d-flex {
     display: flex;
   }
 
-  .justify-content-center{
-    justify-content: center;
+  .justify-content-between {
+    justify-content: space-between;
   }
 
-  .align-items-center{
+  .align-items-center {
     align-items: center;
   }

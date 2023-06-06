@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
+    'editor.apps.EditorConfig',
+    'rest_framework',
     "corsheaders",
 ]
 
@@ -106,7 +108,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = 'static/'
+STATIC_URL = 'templates/'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media/'
@@ -114,10 +116,10 @@ MEDIA_ROOT = 'media/'
 
 if DEBUG:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
+        os.path.join(BASE_DIR, 'templates')
     ]
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'templates')
 
 CORS_ALLOW_ALL_ORIGINS = True
 

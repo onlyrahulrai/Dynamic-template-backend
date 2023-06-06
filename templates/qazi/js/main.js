@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
       const utterance = new SpeechSynthesisUtterance();
 
       // Set the text to be spoken
-      utterance.text = `Welcome ${user} in the Fluid layout template.`;
+      utterance.text = `welcome ${user} in the Fixed layout template.`;
 
       utterance.lang = "en-US";
 
