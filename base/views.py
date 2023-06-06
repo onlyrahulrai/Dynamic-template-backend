@@ -1,22 +1,21 @@
 from django.shortcuts import render, get_object_or_404
-from base.models import *
 from django.views.decorators.csrf import csrf_exempt
-import json
 from django.http import JsonResponse
-from .functions import get_templates_directory
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-import zipfile
+from base.models import *
 from .decorators import *
+from .functions import get_templates_directory
 from .functions import custom_render
+import json
 import os
 import shutil
-from django.conf import settings
+import zipfile
 
 # Create your views here.
-
 @decorate_func
 def home(request):
-    return custom_render(request,'code.html')
+    return custom_render(request,f'code.html')
 
 @login_required(login_url="/admin/login/")
 def theme(request):
@@ -35,9 +34,10 @@ def select_theme(request):
 
         theme = get_object_or_404(Theme, pk=data.get("id"))
 
-        static_directory = os.path.join(settings.BASE_DIR,'static')
+        # static_directory = os.path.join(settings.BASE_DIR,'static')
 
-        user_static_directory = os.path.join(static_directory,request.user.username)
+        # user_static_directory = os.path.join(static_directory,request.user.username)
+
 
         template_directory = os.path.join(get_templates_directory(),request.user.username)
 
@@ -47,19 +47,18 @@ def select_theme(request):
 
             zip_ref.extractall(template_directory)
 
-            code_folder = os.listdir(template_directory)
+            # code_folder = os.listdir(template_directory)
 
-            if request.user.username in os.listdir(static_directory):
-                print(" User Static Directory ",user_static_directory)
-                shutil.rmtree(user_static_directory)
+            # if request.user.username in os.listdir(static_directory):
+            #     shutil.rmtree(user_static_directory)
 
-            for item in code_folder:
-                if item in ["css","js"]:
-                    path = os.path.join(template_directory,item)
+            # for item in code_folder:
+            #     if item in ["css","js"]:
+            #         path = os.path.join(template_directory,item)
 
-                    shutil.copytree(path,os.path.join(user_static_directory,item))
+            #         shutil.copytree(path,os.path.join(user_static_directory,item))
 
-                    shutil.rmtree(path)
+            #         shutil.rmtree(path)
 
         if(request.user.is_authenticated):
             request.user.profile.theme = theme

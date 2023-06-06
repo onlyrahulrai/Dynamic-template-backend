@@ -21,18 +21,20 @@ class Theme(models.Model):
         self.slug = "-".join(self.name.lower().split(" "))
         return super().save(*args,**kwargs)
 
-class Template(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='templates')
-    header_code = models.TextField(null=True,blank=True)
-    footer_code = models.TextField(null=True,blank=True)
-    sidebar_code = models.TextField(null=True,blank=True)
-
-    class Meta:
-        verbose_name_plural = "Templates"
-
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.SET_NULL,null=True,blank=True)
     theme = models.ForeignKey(Theme,on_delete=models.SET_NULL,null=True,blank=True)
+
+class Code(models.Model):
+    name = models.CharField(default="default",max_length=75)
+    user = models.ForeignKey(Profile,on_delete=models.SET_NULL,null=True,blank=True,related_name="codes")
+    path = models.CharField(max_length=200,null=True,blank=True)
+    public = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Codes"
 
 
 
