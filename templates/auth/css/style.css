@@ -1,23 +1,7 @@
 *{
-    background-color: burlywood;
+    background-color: lightcyan;
 }
 
 .text-center {
     text-align: center;
-  }
-
-  .h-85 {
-    height: 85vh;
-  }
-
-  .d-flex {
-    display: flex;
-  }
-
-  .justify-content-between {
-    justify-content: space-between;
-  }
-
-  .align-items-center {
-    align-items: center;
-  }
+}

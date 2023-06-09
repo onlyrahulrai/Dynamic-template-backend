@@ -18,7 +18,8 @@ def folder_tree(root_directory):
                 path = os.path.join(os.path.join(root_directory,item),sub_folder)
 
                 if os.path.isdir(path):
-                    sub_folders = folder_tree(path)
+                    sub_folders.append({'name':sub_folder,'path':path,'items':folder_tree(path),'is_folder':True})
+                    
                 else:
                     sub_folders.append({'name':sub_folder,'path':path,'is_folder':False})
             
@@ -34,7 +35,7 @@ def display_tree(username):
     folder = {}
 
     if os.path.isdir(path):
-        folder.update({'name':username,'path':path,'items':folder_tree(path),'is_folder':True})
+        folder.update({'name':username,'path':path,'items':reversed(folder_tree(path)),'is_folder':True})
     else:
         folder.update({'name':username,'path':path,'is_folder':False})
 
