@@ -33,8 +33,13 @@ class File(APIView):
         with open(path, 'w') as file:
             file.write('')
 
-        folder = display_tree(request.user.username)
-        return Response(folder)
+        with open(path,'r') as file:
+
+            explorer = {'name':os.path.basename(path),'path':path,"content":file.read(),'is_folder':False}
+
+            code = display_tree(request.user.username)
+
+            return Response({'code':code,'explorer':explorer})
 
     def put(self, request, *args, **kwargs):
         with open(request.data.get("path"), 'w') as file:
