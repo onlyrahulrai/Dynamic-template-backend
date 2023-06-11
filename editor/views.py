@@ -18,10 +18,14 @@ class File(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
+        path = request.GET.get("path")
+
         with open(request.GET.get("path"), 'r') as file:
             content = file.read()
 
-            return Response({"content": content})
+            file = {'name':os.path.basename(path),'path':path,'is_folder':os.path.isdir(path),'content':content}
+
+            return Response(file)
 
     def post(self, request, *args, **kwargs):
         path = os.path.join(request.GET.get("path"), request.data.get("file"))
