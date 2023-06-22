@@ -213,7 +213,7 @@ class ThemePublishView(APIView):
 
         production_code = get_object_or_404(Code, pk=request.data.get('id'))
 
-        live_code = get_object_or_404(Code, public=True)
+        live_code = get_object_or_404(Code,user=request.user.profile,public=True)
 
         base_name = os.path.basename(live_code.path)
 
