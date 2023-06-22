@@ -26,10 +26,12 @@ class Profile(models.Model):
     theme = models.ForeignKey(Theme,on_delete=models.SET_NULL,null=True,blank=True)
 
 class Code(models.Model):
-    name = models.CharField(default="default",max_length=75)
-    user = models.ForeignKey(Profile,on_delete=models.SET_NULL,null=True,blank=True,related_name="codes")
-    path = models.CharField(max_length=200,null=True,blank=True)
+    name   = models.CharField(default="default",max_length=75)
+    user   = models.ForeignKey(Profile,on_delete=models.SET_NULL,null=True,blank=True,related_name="codes")
+    path   = models.CharField(max_length=200,null=True,blank=True)
+    image  = models.ImageField(upload_to='directories',null=True,blank=True)
     public = models.BooleanField(default=False)
+    is_active= models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

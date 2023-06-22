@@ -1,0 +1,24 @@
+*{
+    background-color: black;
+   color:white;
+}
+
+.text-center {
+    text-align: center;
+  }
+
+  .h-85 {
+    height: 85vh;
+  }
+
+  .d-flex{
+    display: flex;
+  }
+
+  .justify-content-center{
+    justify-content: center;
+  }
+
+  .align-items-center{
+    align-items: center;
+  }

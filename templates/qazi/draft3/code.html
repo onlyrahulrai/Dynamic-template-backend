@@ -9,7 +9,7 @@
 
     <link
     rel="stylesheet"
-    href="{% static request.user.username|add:'/css/style.css' %}"
+    href="{% static request.user.username|add:'/'|add:path|add:'/css/style.css' %}"
   />
   
     <script>
@@ -21,10 +21,10 @@
     {% block header %} {% include 'header.html' %} {% endblock header %}
 
     <div class="h-85 d-flex justify-content-center align-items-center">
-      <h3 class="text-center">Fluid layout - {{request.user.username|title}}</h3>
+      <h3 class="text-center">Fluid layout - {{request.user.username|title}}</h3> Aesome
     </div>
 
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
-    <script src="{% static request.user.username|add:'/js/main.js' %}"></script>
+    <script src="{% static request.user.username|add:'/'|add:path|add:'/js/main.js' %}"></script>
   </body>
 </html>

@@ -29,14 +29,12 @@ def folder_tree(root_directory):
 
     return items
 
-def display_tree(username):
-    path = os.path.join(get_templates_directory(),username)
-
+def display_tree(path):
     folder = {}
 
     if os.path.isdir(path):
-        folder.update({'name':username,'path':path,'items':reversed(folder_tree(path)),'is_folder':True})
+        folder.update({'name':os.path.basename(path),'path':path,'items':reversed(folder_tree(path)),'is_folder':True})
     else:
-        folder.update({'name':username,'path':path,'is_folder':False})
+        folder.update({'name':os.path.basename(path),'path':path,'is_folder':False})
 
     return folder
