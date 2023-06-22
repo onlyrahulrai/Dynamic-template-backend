@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from base.models import *
 from .decorators import *
@@ -15,7 +14,13 @@ import zipfile
 # Create your views here.
 @decorate_func
 def home(request):
-    return custom_render(request,f'code.html')
+    path = request.GET.get('path','live')
+
+    context = {
+        'path': path
+    }
+
+    return custom_render(request,f'/{path}/code.html',context)
 
 @login_required(login_url="/admin/login/")
 def theme(request):
@@ -26,6 +31,8 @@ def theme(request):
     }
 
     return render(request, 'theme.html', context)
+
+
 
 @csrf_exempt
 def select_theme(request):
@@ -39,7 +46,7 @@ def select_theme(request):
         # user_static_directory = os.path.join(static_directory,request.user.username)
 
 
-        template_directory = os.path.join(get_templates_directory(),request.user.username)
+        template_directory = os.path.join(os.path.join(get_templates_directory(),request.user.username),'live')
 
         with zipfile.ZipFile(theme.code.path, 'r') as zip_ref:
             
@@ -47,6 +54,12 @@ def select_theme(request):
                 shutil.rmtree(template_directory)
 
             zip_ref.extractall(template_directory)
+
+            code,created = Code.objects.get_or_create(name="live",user=request.user.profile,path=template_directory,public=True)
+
+            code.image = theme.image
+
+            code.save()
 
             # code_folder = os.listdir(template_directory)
 

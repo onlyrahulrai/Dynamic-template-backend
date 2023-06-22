@@ -7,5 +7,5 @@ def get_templates_directory():
             return engine['DIRS'][0]
     raise Exception('Templates directory not found in settings')
 
-def custom_render(request,template):
-    return render(request,f'{request.user.username}/{template}')
+def custom_render(request,template,context):
+    return render(request,f'{request.user.username}/{template}',context)

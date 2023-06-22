@@ -1,5 +1,6 @@
 *{
-    background-color: burlywood;
+    background-color: pink;
+   color:white;
 }
 
 .text-center {
@@ -10,14 +11,14 @@
     height: 85vh;
   }
 
-  .d-flex {
+  .d-flex{
     display: flex;
   }
 
-  .justify-content-between {
-    justify-content: space-between;
+  .justify-content-center{
+    justify-content: center;
   }
 
-  .align-items-center {
+  .align-items-center{
     align-items: center;
   }
