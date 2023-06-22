@@ -14,13 +14,7 @@ import zipfile
 # Create your views here.
 @decorate_func
 def home(request):
-    path = request.GET.get('path','live')
-
-    context = {
-        'path': path
-    }
-
-    return custom_render(request,f'/{path}/code.html',context)
+    return custom_render(request,f'code.html')
 
 @login_required(login_url="/admin/login/")
 def theme(request):

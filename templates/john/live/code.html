@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+{% load extras %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link
+      rel="stylesheet"
+      href="{% static request|get_static_path:path|add:'/css/style.css' %}"
+    />
+    <script>
+      var user = "{{username}}"
+    </script>
+  </head>
+  <body>
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+
+    <div class="h-85 d-flex justify-content-between align-items-center">
+      <h3>Left Sidebar</h3>
+      <h3>Adaptive layout - {{username|title}}</h3>
+      <h3>Right Sidebar</h3>
+    </div>
+
+    {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    <script src="{% static request|get_static_path:path|add:'/js/main.js' %}"></script>
+  </body>
+</html>
