@@ -31,7 +31,7 @@ class Code(models.Model):
     path   = models.CharField(max_length=200,null=True,blank=True)
     image  = models.ImageField(upload_to='directories',null=True,blank=True)
     public = models.BooleanField(default=False)
-    is_active= models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

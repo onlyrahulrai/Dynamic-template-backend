@@ -1,5 +1,4 @@
 import os
-from base.functions import get_templates_directory
 
 def folder_tree(root_directory):
     items = []
