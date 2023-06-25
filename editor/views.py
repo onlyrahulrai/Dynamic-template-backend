@@ -12,11 +12,10 @@ from .serializers import (
 )
 from base.models import *
 from rest_framework import status
-from base.functions import get_templates_directory
+from base.functions import get_templates_directory,get_theme
 from django.db import transaction
 import os
 import shutil
-import zipfile
 
 # Create your views here.
 
@@ -43,29 +42,7 @@ class ThemeAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         with transaction.atomic():
-            theme = get_object_or_404(Theme, pk=request.data.get("id"))
-
-            path = os.path.join(os.path.join(
-                get_templates_directory(), request.user.username))
-
-            if os.path.basename(path) not in os.listdir(get_templates_directory()):
-                os.mkdir(path)
-
-            template_directory = os.path.join(path, 'live')
-
-            with zipfile.ZipFile(theme.code.path, 'r') as zip_ref:
-
-                if os.path.basename(template_directory) in os.listdir(path):
-                    shutil.rmtree(template_directory)
-
-                zip_ref.extractall(template_directory)
-
-                code, created = Code.objects.get_or_create(
-                    name="live", user=request.user.profile, path=template_directory, public=True)
-
-                code.image = theme.image
-
-                code.save()
+            theme = get_theme(request)
 
             if(request.user.is_authenticated):
                 request.user.profile.theme = theme
@@ -224,8 +201,6 @@ class ThemePublishView(APIView):
             shutil.rmtree(live_code.path)
 
         shutil.copytree(production_code.path, live_code.path)
-
-        production_code.is_active = False
 
         production_code.save()
         live_code.save()
